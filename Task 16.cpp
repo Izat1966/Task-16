@@ -16,7 +16,7 @@ struct Date {
     int day, month, year;
 
     int dayNumber() const {
-        static int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
+        int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
         int y = year - (month < 3);
         return (y + y / 4 - y / 100 + y / 400 + t[month - 1] + day) % 7;
     }
