@@ -103,7 +103,7 @@ int main() {
     sort (dates.begin(), dates.end());
   
     for (auto d:dates) {
-    cout << ba.calculateDifference(ra) << endl;
+    d.printDate();
     }
     return 0;
 }
