@@ -71,7 +71,7 @@ struct Date {
         }
     }
 
-   static int calculateDifference(const Date& date) const {
+   static int calculateDifference(const Date& from, const Date& to)  {
         static int increment[12] = { 1, -2, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1 };
         int daysInc = 0;
         if (to.day - from.day < 0) {
