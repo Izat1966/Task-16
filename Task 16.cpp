@@ -95,7 +95,7 @@ struct Date {
             days = 30;
         }
 
-        return years * 360 + months * 30 + days;
+        return diff;
     }
     bool operator<(const Date& date) const {
         if (!isValidDate() || !date.isValidDate()) return false;
