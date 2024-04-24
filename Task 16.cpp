@@ -71,20 +71,32 @@ struct Date {
         }
     }
 
-   int calculateDifference(const Date& date) const {
-    if (!isValidDate() || !date.isValidDate()) return 1;
-    long int n1 = year * 365 + dayNumber();
-    for (int i = 0; i < month - 1; i++) {
-        n1 += daysInMonth(i + 1, year);
-    }
+   static int calculateDifference(const Date& date) const {
+        static int increment[12] = { 1, -2, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1 };
+        int daysInc = 0;
+        if (to.day - from.day < 0) {
+            int month = to.month - 2; 
+            if (month < 0)
+                month = 11; 
+            daysInc = increment[month];
+            if ((month == 1) && (to.year % 4 == 0))
+                daysInc++; 
+        }
 
-    long int n2 = date.year * 365 + date.dayNumber();
-    for (int i = 0; i < date.month - 1; i++) {
-        n2 += daysInMonth(i + 1, date.year);
-    }
+        int total1 = from.year * 360 + from.month * 30 + from.day;
+        int total2 = to.year * 360 + to.month * 30 + to.day;
+        int diff = total2 - total1;
+        int years = diff / 360;
+        int months = (diff - years * 360) / 30;
+        int days = diff - years * 360 - months * 30 + daysInc;
 
-    return abs(n2 - n1); 
-}
+        if (from.day == 1 && to.day == 31) {
+            months--;
+            days = 30;
+        }
+
+        return years * 360 + months * 30 + days;
+    }
     bool operator<(const Date& date) const {
         if (!isValidDate() || !date.isValidDate()) return false;
         if (year != date.year) return year < date.year;
