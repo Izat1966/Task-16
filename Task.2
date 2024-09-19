@@ -1,0 +1,33 @@
+public class Student
+{
+    
+    public String name;
+    public int id;
+    public double gpa;
+    public int year;
+    
+    public Student (String name, int id, double gpa, int year) {
+        
+        this.name=name;
+        this.id=id;
+        this.gpa=gpa;
+        this.year=year;
+        
+    }
+    
+    public void DisplayInfo() {
+        
+        System.out.println("Student name:" + name);
+        System.out.println("Student id:" + id);
+        System.out.println("Student gpa:" + gpa);
+        System.out.println("Student year:" + year);
+        
+    }
+    
+    public void DisplayOnlyName() {
+        
+        System.out.println("Student name:" + name);
+        
+    }
+	
+}
